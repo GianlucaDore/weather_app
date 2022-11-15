@@ -40,8 +40,7 @@ export const Caller = () =>
                 const resUrlAltCity1Call = await globalResponse[1].json();
                 const resUrlAltCity2Call = await globalResponse[2].json();
 
-                /* QUESTE SETSTATE NON STANNO FACENDO AWAITING, QUINDI VENGONO ESEGUITE PRIMA CHE LE FETCH RITORNINO.
-                    CORREGGERE CON resMainCityCall.then(setMainCityData())  (...) in maniera da attendere che ritorni il metodo json. */
+                
                 setMainCityData({
                     "name" : resMainCityCall.name,
                     "weather" : resMainCityCall.weather[0].main,
