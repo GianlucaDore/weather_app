@@ -1,5 +1,8 @@
 import React from 'react';
 import { useState } from 'react';
+import { MainCityBox } from './MainCityBox';
+import { Today } from './Today';
+import { WeekMonthBox } from './WeekMonthBox';
 
 export const MainCity = (props) =>
 {

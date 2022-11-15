@@ -2,7 +2,7 @@ import React from 'react';
 
 export const WeekMonthBox = (props) =>
 {
-    if ( props.switcher == "Week")
+    if ( props.switcher === "Week")
     {
         return (
             <div id="this_week_section">

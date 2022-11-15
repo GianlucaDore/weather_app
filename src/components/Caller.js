@@ -4,7 +4,7 @@ import { MainCity } from './MainCity';
 import { AltCity } from './AltCity';
 
 
-export const MainCityContext = createContext(
+export const MainCityContext = React.createContext(
     null // context initial value. Let's fetch weather data, making our Caller component the provider. The main city box and the other two boxes will be consumers of this context, aka the data fetched.
 );
 
@@ -34,46 +34,44 @@ export const Caller = () =>
                     fetch(urlAltCity2)
                 ]);
 
-                if (!globalResponse.ok)
-                    console.log("One or more API responses are not ok!");
-                else
-                {
-                    const resMainCityCall = await globalResponse[0].json();
-                    // const resUrlTodayBoxCall = await globalResponse[1].json();
-                    // const resUrlWeekMonthBoxCall = await globalResponse[2].json();
-                    const resUrlAltCity1Call = await globalResponse[1].json();
-                    const resUrlAltCity2Call = await globalResponse[2].json();
+                const resMainCityCall = await globalResponse[0].json();
+                // const resUrlTodayBoxCall = await globalResponse[1].json();
+                // const resUrlWeekMonthBoxCall = await globalResponse[2].json();
+                const resUrlAltCity1Call = await globalResponse[1].json();
+                const resUrlAltCity2Call = await globalResponse[2].json();
 
-                    setMainCityData({
-                        "name" : resMainCityCall.name,
-                        "weather" : resMainCityCall.weather[0].main,
-                        "weather_description" : resMainCityCall.weather[0].description,
-                        "icon" : resMainCityCall.weather[0].icon,
-                        "temperature" : resMainCityCall.weather[0].main.temp,
-                        "time" : convertTimeOffsetToDate( resMainCityCall.timezone )
-                        // spot for the forecasted data (paid API on OpenWeather).
+                /* QUESTE SETSTATE NON STANNO FACENDO AWAITING, QUINDI VENGONO ESEGUITE PRIMA CHE LE FETCH RITORNINO.
+                    CORREGGERE CON resMainCityCall.then(setMainCityData())  (...) in maniera da attendere che ritorni il metodo json. */
+                setMainCityData({
+                    "name" : resMainCityCall.name,
+                    "weather" : resMainCityCall.weather[0].main,
+                    "weather_description" : resMainCityCall.weather[0].description,
+                    "icon" : resMainCityCall.weather[0].icon,
+                    "temperature" : resMainCityCall.weather[0].main.temp,
+                    "time" : convertTimeOffsetToDate( resMainCityCall.timezone )
+                    // spot for the forecasted data (paid API on OpenWeather).
 
-                    });
+                });
 
-                    setAltCity1Data({
-                        "name" : resUrlAltCity1Call.name,
-                        "weather" : resUrlAltCity1Call.weather[0].main,
-                        "weather_description" : resUrlAltCity1Call.weather[0].description,
-                        "icon" : resUrlAltCity1Call.weather[0].icon,
-                        "temperature" : resUrlAltCity1Call.weather[0].main.temp,
-                        "time" : convertTimeOffsetToDate( resUrlAltCity1Call.timezone )  // time attribute is type Date
-                    });
+                setAltCity1Data({
+                    "name" : resUrlAltCity1Call.name,
+                    "weather" : resUrlAltCity1Call.weather[0].main,
+                    "weather_description" : resUrlAltCity1Call.weather[0].description,
+                    "icon" : resUrlAltCity1Call.weather[0].icon,
+                    "temperature" : resUrlAltCity1Call.weather[0].main.temp,
+                    "time" : convertTimeOffsetToDate( resUrlAltCity1Call.timezone )  // time attribute is type Date
+                });
 
-                    setAltCity2Data({
-                        "name" : resUrlAltCity2Call.name,
-                        "weather" : resUrlAltCity2Call.weather[0].main,
-                        "weather_description" : resUrlAltCity2Call.weather[0].description,
-                        "icon" : resUrlAltCity2Call.weather[0].icon,
-                        "temperature" : resUrlAltCity2Call.weather[0].main.temp,
-                        "time" : convertTimeOffsetToDate( resUrlAltCity2Call.timezone )  // time attribute is type Date
-                    });
+                setAltCity2Data({
+                    "name" : resUrlAltCity2Call.name,
+                    "weather" : resUrlAltCity2Call.weather[0].main,
+                    "weather_description" : resUrlAltCity2Call.weather[0].description,
+                    "icon" : resUrlAltCity2Call.weather[0].icon,
+                    "temperature" : resUrlAltCity2Call.weather[0].main.temp,
+                    "time" : convertTimeOffsetToDate( resUrlAltCity2Call.timezone )  // time attribute is type Date
+                });
 
-                }
+                console.log("Status updated.");
 
             }
 
@@ -81,27 +79,18 @@ export const Caller = () =>
 
         }, []); // useEffect triggers only after mounting phase for now.
 
-
-        let mainCityComponent, altCity1Component, altCity2Component = null;
         // spot left for declaring the spinner and setting it on by default.
-        if ((mainCityData && altCity1Data && altCity2Data) != null)
-        {
-            mainCityComponent = <MainCity />;  // Not passing props to it, because MainCity has nested components that need to access data. It's made available for them in an appropriate Context.
-            altCity1Component = <AltCity data={ altCity1Data } />
-            altCity2Component = <AltCity data={ altCity2Data } />
-        }
         // spot left for setting the spinner off in case the state is not null (data is fetched).
 
     
     return (
         <div id="total_render">
-            <MainCityContext.Provider value={ mainCityData } >
-                { mainCityComponent }
-            </MainCityContext.Provider>
-            { altCity1Component }
-            { altCity2Component }
-        </div>
-        
+          <MainCityContext.Provider value={ mainCityData } >
+            {!!mainCityData ? <MainCity /> : null}
+          </MainCityContext.Provider>
+          {!!altCity1Data ? <AltCity data = {altCity1Data} /> : null}
+          {!!altCity2Data ? <AltCity data = {altCity2Data} /> : null}
+        </div>    
     );
 
 }
