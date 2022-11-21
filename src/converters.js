@@ -74,3 +74,103 @@ export const getMonth = (monthNumber) =>
     }
 
 }
+
+export const isItDaytime = (dateGiven) =>
+{
+    let date = new Date(dateGiven);
+    if (date.getHours() >= 8 && date.getHours() <= 19)
+        return true;
+    else
+        return false;
+}
+
+export const isItTheWorstWeather = (mainWeather, weatherCode, actualWorstWeather) =>
+{
+    let actualWorstWeatherMain = actualWorstWeather[0] ?? null;  // This is to prevent the error you get when inspecting the index 0 cell of an array when it's set to undefined.
+    let actualWorstWeatherId = actualWorstWeather[2] ?? 0;  // Same as above.
+
+    switch (mainWeather) 
+    {
+        case 'Snow' :
+            return true;
+        
+        case 'Thunderstorm' :
+        {
+            if (actualWorstWeatherMain === 'Snow')
+                return false;
+            if (actualWorstWeatherMain === null)
+                return true;
+            else
+                break;
+        }
+
+        case 'Rain' :
+        {
+            if (actualWorstWeatherMain === 'Snow' || actualWorstWeatherMain === 'Thunderstorm' )
+                return false;
+            if (actualWorstWeatherMain === 'Drizzle' || actualWorstWeatherMain === 'Clear' || actualWorstWeatherMain === 'Clouds' || actualWorstWeatherMain === null)
+                return true;
+
+            else
+                break;
+        }
+
+        case 'Drizzle' :
+        {
+            if (actualWorstWeatherMain === 'Snow' || actualWorstWeatherMain === 'Thunderstorm' || actualWorstWeatherMain === 'Rain')
+                return false;
+
+            if (actualWorstWeatherMain === 'Clear' || actualWorstWeatherMain === 'Clouds' || actualWorstWeatherMain === null)
+                return true;
+
+            else
+                break;
+        }
+
+        case 'Clouds' :
+        {
+            if (actualWorstWeatherMain === 'Clear' || actualWorstWeatherMain === null)
+                return true;
+            else
+                return false;
+        }
+
+        case 'Clear' :
+        {
+            if (actualWorstWeatherMain === null)
+                return true;
+            else
+                return false;
+        }
+
+        default :
+        {
+            return false;
+        }
+    }
+
+    if (actualWorstWeatherId < weatherCode) 
+        return true;
+    else
+        return false;
+}
+
+export const isItADifferentDay = (dateFetched, actualDate) =>
+{
+    let date_fetched = new Date(dateFetched);
+    let actual_date = new Date(actualDate);
+
+    if (date_fetched.getFullYear() === actual_date.getFullYear() && date_fetched.getMonth() === actual_date.getMonth() && date_fetched.getDate() === actual_date.getDate())
+        return false;
+    else
+        return true;
+}
+
+export const convertTimeOffsetToDate = (secondsFromUTC) =>
+{
+    let convertedDate = new Date();  // Instanciating a Date object with the current UTC time.
+    convertedDate.setSeconds(convertedDate.getSeconds() + secondsFromUTC);
+
+    return convertedDate;
+}
+
