@@ -13,6 +13,7 @@ export const AltCity = (props) =>
                     <p>{ props.data.time.getHours() }:{ (props.data.time.getMinutes()<10?'0':'') + props.data.time.getMinutes() }</p>
                 </li>
                 <li>
+                    <img src={"http://openweathermap.org/img/wn/" + props.data.icon + ".png"} alt="Current Weather Icon" />
                 </li>
                 <li>
                     <h2>{ props.data.temperature }</h2>

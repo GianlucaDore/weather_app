@@ -2,6 +2,7 @@ import React from 'react';
 import { useState } from 'react';
 import { MainCityContext } from './Caller';
 import { WeekMonthBox } from './WeekMonthBox';
+import "../css/WeekMonthWrapper.css"
 
 export const WeekMonthWrapper = () =>
 {
@@ -15,8 +16,10 @@ export const WeekMonthWrapper = () =>
 
     return (
         <div id="week_month_box">
-            <button onClick={ () => changeState("Week") }>Week</button>
-            <button onClick={ () => changeState("Month") }>Month</button>
+            <div id="week_month_buttons">
+                <button onClick={ () => changeState("Week") }>This week</button>
+                <button onClick={ () => changeState("Month") }>This month</button>
+            </div>
             <WeekMonthBox mode={activeBox}/>
         </div>
     );

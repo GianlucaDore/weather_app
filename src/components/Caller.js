@@ -148,10 +148,12 @@ export const Caller = () =>
           <MainCityContext.Provider value={ [mainCityData, forecastedData] } >
             {!!mainCityData ? <MainCity /> : null}
           </MainCityContext.Provider>
-          {!!altCity1Data ? <AltCity data = {altCity1Data} /> : null}
-          {!!altCity2Data ? <AltCity data = {altCity2Data} /> : null}
-          {!!mainCityData ? <Search /> : null}
-          {!!mainCityData ? <Localization /> : null }
+          <div id="alt_cities_search_localization">
+            {!!altCity1Data ? <AltCity data = {altCity1Data} /> : null}
+            {!!altCity2Data ? <AltCity data = {altCity2Data} /> : null}
+            {!!mainCityData ? <Search /> : null}
+            {!!mainCityData ? <Localization /> : null }
+          </div>
         </div>    
     );
 

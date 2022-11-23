@@ -14,16 +14,16 @@ export const WeekMonthBox = (props) =>
             boxToRender = [];
             for (const [key, value] of data.this_week.entries())
             {
-                boxToRender.push(<table className="week_table">
+                boxToRender.push(<table className="week_box">
                                     <tbody>
-                                        <tr>
+                                        <tr key={key}>
                                             <td>{key}</td>
                                         </tr>
-                                        <tr>
+                                        <tr key={key+value[0]}>
                                             <td>{value[0]}°C</td>
                                         </tr>
-                                        <tr>
-                                            <td>{value[1]}</td>
+                                        <tr key={key+value[1]}>
+                                            <td><img src={"http://openweathermap.org/img/wn/" + value[1] + ".png"} alt="Current Weather Icon" /></td>
                                         </tr>
                                     </tbody>
                                  </table>);

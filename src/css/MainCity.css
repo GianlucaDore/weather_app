@@ -1,0 +1,53 @@
+#main_city
+{
+    display: inline-block;
+    width: 50%;
+    height: 100%;
+}
+
+#alt_cities_search_localization
+{
+    display: inline-block;
+    width: 50%;
+}
+
+#main_city_box
+{
+    margin-top: 0%;
+}
+
+/*
+#today_and_forecast
+{
+    width: 50%;
+} */
+
+#today_box
+{
+    display: inline-block;
+    margin-left: 1%;
+    
+}
+
+#week_month_box
+{
+    display: inline-block; 
+    position: absolute;
+    margin-left: 7%;
+    margin-top: 1.5%;
+    /* margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px; */
+
+}
+
+#week_box
+{
+    display: inline-block;
+}
+
+#month_box
+{
+    display: inline-block;
+}

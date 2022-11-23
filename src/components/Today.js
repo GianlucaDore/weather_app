@@ -1,6 +1,7 @@
 import React from 'react';
 import { MainCityContext } from './Caller';
 import { useContext } from 'react';
+import "../css/Today.css"
 
 export const Today = () =>
 {
@@ -15,13 +16,13 @@ export const Today = () =>
     }
 
     return (
-        <div id="today_section">
-            <h3 className="section_header">PLACEHOLDER FOR TODAY BOX</h3>
-            <ul>
+        <div id="today_box">
+            <h3 className="section_header">Today</h3>
+            <ul className='today_temp_hour_list'>
                 { tempList }
-                <li>
-                    <img alt="segmented_line" src="www.lines.com/segmentedLine"></img>
-                </li>
+            </ul>
+            <img id="segmented_line" alt="segmented_line" src="www.lines.com/segmentedLine"></img>
+            <ul className='today_temp_hour_list'>
                 { hoursList }
             </ul>
         </div>

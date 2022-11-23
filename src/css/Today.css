@@ -1,0 +1,14 @@
+.today_temp_hour_list
+{
+    display: inline-block;
+}
+
+#segmented_line
+{
+    display: inline-block;
+}
+
+ul
+{
+    list-style: none;
+}
