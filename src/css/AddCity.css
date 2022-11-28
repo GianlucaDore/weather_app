@@ -1,0 +1,19 @@
+#add_city
+{
+    margin: 2%;
+
+}
+
+#plus_icon
+{
+    display: inline-block;
+    vertical-align: sub;
+    color: blue;
+}
+
+#add_city_paragraph
+{
+    display: inline-block;
+    margin-left: 2%;
+    color: darkblue;
+}

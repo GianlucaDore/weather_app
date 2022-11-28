@@ -1,0 +1,21 @@
+#search
+{
+    text-align: left;
+}
+
+#search-form
+{
+    box-sizing: border-box;
+   
+}
+/*
+#search_input
+{
+
+} */
+
+#search_submit
+{
+    background-image: linear-gradient(to bottom, #2759eb, #2571f1, #3886f4, #539af4, #71adf2);
+    border-radius: 20%;
+}

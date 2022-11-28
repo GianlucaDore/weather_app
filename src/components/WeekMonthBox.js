@@ -14,16 +14,16 @@ export const WeekMonthBox = (props) =>
             boxToRender = [];
             for (const [key, value] of data.this_week.entries())
             {
-                boxToRender.push(<table className="week_box">
+                boxToRender.push(<table className="week_table" key={key}>
                                     <tbody>
-                                        <tr key={key}>
-                                            <td>{key}</td>
+                                        <tr className="week_table_row">
+                                            <td className="table_data"><h4>{key}</h4></td>
                                         </tr>
-                                        <tr key={key+value[0]}>
-                                            <td>{value[0]}°C</td>
+                                        <tr className="week_table_row">
+                                            <td className="table_data"><h2 className="week_table_temp_value">{value[0]}°C</h2></td>
                                         </tr>
-                                        <tr key={key+value[1]}>
-                                            <td><img src={"http://openweathermap.org/img/wn/" + value[1] + ".png"} alt="Current Weather Icon" /></td>
+                                        <tr className="week_table_row">
+                                            <td className="table_data"><img className="week_weather_image" src={"http://openweathermap.org/img/wn/" + value[1] + ".png"} alt="Current Weather Icon" /></td>
                                         </tr>
                                     </tbody>
                                  </table>);
@@ -37,7 +37,7 @@ export const WeekMonthBox = (props) =>
         case "Month":
         {
             boxToRender = [
-                <div id="month_box">
+                <div id="month_box" key={"month"}>
                     <div id="text_image_month">
                         {<h6>Date</h6>}
                         {<img src="image.co/currentweather" alt="weather icon"></img>}

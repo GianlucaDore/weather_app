@@ -1,6 +1,18 @@
+#today_data
+{
+    background-image: linear-gradient(to right, #2759eb, #71adf2);
+    border-radius: 15%;
+}
+
 .today_temp_hour_list
 {
     display: inline-block;
+    text-align: center;
+    color: antiquewhite;
+    margin-top: 30%;
+    margin-left: 5%;
+    margin-right: 5%;
+    margin-bottom: 5%;
 }
 
 #segmented_line
@@ -8,7 +20,14 @@
     display: inline-block;
 }
 
+h2
+{
+    text-align: left;
+}
+
 ul
 {
     list-style: none;
+    padding-inline-start: 0; /* Overriding nonsensical user-agent-style */
+    
 }

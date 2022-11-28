@@ -1,6 +1,67 @@
-.week_box
+#week_month_buttons
+{
+    text-align: left;
+}
+
+.week_month_button_active
+{
+    color: white;
+    background-color: #2759eb;
+    border-style: none;
+    border-width: 0px;
+    border-top-left-radius: 15%;
+    border-top-right-radius: 15%;
+}
+
+.week_month_button_inactive
+{
+    background-image: linear-gradient(to right, white, white);
+    border-style: none;
+    border-width: 0px;
+    border-top-left-radius: 15%;
+    border-top-right-radius: 15%;
+}
+
+#week_month_tables
+{
+    background-image: linear-gradient(to right bottom, #2759eb, #71adf2);
+    height: 100%;
+    padding-top: 1%;
+    border-top-right-radius: 5%;
+    border-bottom-left-radius: 5%;
+    border-bottom-right-radius: 5%;
+}
+
+.week_table
 {
     display: inline-block;
+    color: white;
+    background-image: linear-gradient(to right bottom, rgb(104,143,236), #71adf2);
+    margin-top: 4%;
+    margin-bottom: 6%;
+    padding: 5px;
+    border-style: none;
+    border-radius: 16%;
+}
+
+.week_table_row
+{
+    margin: 100%;
+}
+
+.table_data
+{
+    width: 100px;
+}
+
+.week_table_temp_value
+{
+    text-align: center;
+}
+
+.week_weather_image
+{
+    height: 70px;
 }
 
 

@@ -1,40 +1,75 @@
 #main_city
 {
-    display: inline-block;
-    width: 50%;
+    display: inline-block; /* The two main blocks of the page: main city data and alternate cities + search & localization components. */
+    width: 60%;
     height: 100%;
+    background-color: aqua;
 }
 
 #alt_cities_search_localization
 {
     display: inline-block;
-    width: 50%;
+    width: 40%;
+    height: 100%;
+    background-color: red;
+    vertical-align: top; /* To make the "alternate city" divs always stay up. */
+    
+}
+
+#alt_cities
+{
+    margin-top: 7%;
+}
+
+#search_localization
+{
+    margin-top: 14%;
+}
+
+#search
+{
+    margin-bottom: 10%;
 }
 
 #main_city_box
 {
     margin-top: 0%;
+    margin-bottom: 40%;
+    margin-left: 0%;
+    background-color: yellow;
 }
 
-/*
+#main_city_data
+{
+    text-align: left;
+    margin-left: 15%;
+    padding-bottom: 1%;
+    width: 75%;
+    background-color: green;
+
+}
+
 #today_and_forecast
 {
-    width: 50%;
-} */
+    width: 100%;
+    background-color: violet;
+}
 
 #today_box
 {
     display: inline-block;
-    margin-left: 1%;
-    
+    vertical-align: top;
+    margin-left: 0%;
+    margin-right: 7%;
+    background-color: brown;
+    width: 25%;    
 }
 
 #week_month_box
 {
     display: inline-block; 
-    position: absolute;
-    margin-left: 7%;
-    margin-top: 1.5%;
+    /* position: absolute;*/
+    margin-top: 0%;
     /* margin-block-start: 1em;
     margin-block-end: 1em;
     margin-inline-start: 0px;
@@ -51,3 +86,4 @@
 {
     display: inline-block;
 }
+

@@ -1,6 +1,7 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
 import { MainCity } from './MainCity';
+import { AddCity } from './AddCity';
 import { AltCity } from './AltCity';
 import { Search } from './Search';
 import { Localization } from './Localization';
@@ -66,7 +67,7 @@ export const Caller = () =>
                         if (i < 4)  // We need to display in Today's box only the next 3(x3) hours and their temp values.
                         {
                             let dt_txt_DateObject =  new Date(resUrlForecastCall.list[i].dt_txt);  // Let's create a Date object from the date string dt_txt in the JSON, and use that as the key for the map that associates a hour to its temp value.
-                            todayTempMap.set(dt_txt_DateObject.getHours(), resUrlForecastCall.list[i].main.temp);  // Here we just register the 3 next forecasted hours, since every entry in .list has a 3 hours difference from its previous element.
+                            todayTempMap.set(dt_txt_DateObject.getHours(), Math.round(resUrlForecastCall.list[i].main.temp));  // Here we just register the 3 next forecasted hours, since every entry in .list has a 3 hours difference from its previous element.
                         }
                         
                         if (isItADifferentDay(resUrlForecastCall.list[i].dt_txt, actualDate ) === true)  // Did we just parsed data for another day?
@@ -103,7 +104,7 @@ export const Caller = () =>
                     const date = new Date(); 
                     date.setDate(date.getDate() + 1);   // i=1 and date+1 because we're skipping today's info in the week/month box.
                     for (let i=1; i<4; i++, date.setDate(date.getDate() + 1) )  // i<4 because we need to display only the 3 next days in the Week box.
-                        weekWeatherMap.set(getWeekday(date.getDay()), [maxTemp[i], worstWeather[i][3]]);
+                        weekWeatherMap.set(getWeekday(date.getDay()), [Math.round(maxTemp[i]), worstWeather[i][3]]);
 
                     /* We already have todayTempMap ready, we prepared it in the for loop. No additional operations on it are needed, we can return the maps that will make the forecastedData state variable. */
                     return ({
@@ -118,7 +119,7 @@ export const Caller = () =>
                     "weather" : resUrlAltCity1Call.weather[0].main,
                     "weather_description" : resUrlAltCity1Call.weather[0].description,
                     "icon" : resUrlAltCity1Call.weather[0].icon,
-                    "temperature" : resUrlAltCity1Call.weather[0].main.temp,
+                    "temperature" : Math.round(resUrlAltCity1Call.main.temp),
                     "time" : convertTimeOffsetToDate( resUrlAltCity1Call.timezone )  // time attribute is type Date
                 });
 
@@ -127,7 +128,7 @@ export const Caller = () =>
                     "weather" : resUrlAltCity2Call.weather[0].main,
                     "weather_description" : resUrlAltCity2Call.weather[0].description,
                     "icon" : resUrlAltCity2Call.weather[0].icon,
-                    "temperature" : resUrlAltCity2Call.weather[0].main.temp,
+                    "temperature" : Math.round(resUrlAltCity2Call.main.temp),
                     "time" : convertTimeOffsetToDate( resUrlAltCity2Call.timezone )  // time attribute is type Date
                 });
 
@@ -149,10 +150,15 @@ export const Caller = () =>
             {!!mainCityData ? <MainCity /> : null}
           </MainCityContext.Provider>
           <div id="alt_cities_search_localization">
-            {!!altCity1Data ? <AltCity data = {altCity1Data} /> : null}
-            {!!altCity2Data ? <AltCity data = {altCity2Data} /> : null}
-            {!!mainCityData ? <Search /> : null}
-            {!!mainCityData ? <Localization /> : null }
+            <div id="alt_cities">
+                {!!mainCityData ? <AddCity /> : null}
+                {!!altCity1Data ? <AltCity data = {altCity1Data} /> : null}
+                {!!altCity2Data ? <AltCity data = {altCity2Data} /> : null}
+            </div>
+            <div id="search_localization">
+                {!!mainCityData ? <Search /> : null}
+                {!!mainCityData ? <Localization /> : null}
+            </div>
           </div>
         </div>    
     );
