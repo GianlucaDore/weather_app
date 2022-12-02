@@ -40,7 +40,7 @@ export const WeekMonthBox = (props) =>
                 <div id="month_box" key={"month"}>
                     <div id="text_image_month">
                         {<h6>Date</h6>}
-                        {<img src="image.co/currentweather" alt="weather icon"></img>}
+                        {<img id="month_box_weather_image" src="image.co/currentweather" alt="weather icon"></img>}
                     </div>
                     <div id="text_details_month">
                         <h6>Month temp</h6>

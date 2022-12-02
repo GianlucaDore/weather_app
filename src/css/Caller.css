@@ -1,0 +1,7 @@
+#total_render
+{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: stretch;
+}

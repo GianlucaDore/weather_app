@@ -1,3 +1,19 @@
+#today_and_forecast
+{
+    width: 100%;
+    /* background-color: violet; */
+}
+
+#today_box
+{
+    display: inline-block;
+    vertical-align: top;
+    margin-left: 0%;
+    margin-right: 7%;
+    /* background-color: brown; */
+    width: 25%;    
+}
+
 #today_data
 {
     background-image: linear-gradient(to right, #2759eb, #71adf2);
@@ -13,6 +29,28 @@
     margin-left: 5%;
     margin-right: 5%;
     margin-bottom: 5%;
+}
+
+#week_month_box
+{
+    display: inline-block; 
+    margin-top: 0%;
+}
+
+#week_box
+{
+    display: inline-block;
+}
+
+#month_box
+{
+    display: inline-block;
+    margin-top: 0%;
+}
+
+.section_header
+{
+    margin-top: 5%;
 }
 
 #segmented_line

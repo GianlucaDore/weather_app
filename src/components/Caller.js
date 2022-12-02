@@ -6,7 +6,7 @@ import { AltCity } from './AltCity';
 import { Search } from './Search';
 import { Localization } from './Localization';
 import { isItDaytime, isItTheWorstWeather, isItADifferentDay, convertTimeOffsetToDate, getWeekday } from '../converters';
-
+import '../css/Caller.css'
 
 export const MainCityContext = React.createContext(
     null // context initial value. Let's fetch weather data, making our Caller component the provider. The main city box and the other two boxes will be consumers of this context, aka the data fetched.
@@ -50,7 +50,6 @@ export const Caller = () =>
                     "icon" : resMainCityCall.weather[0].icon,
                     "temperature" : resMainCityCall.weather[0].main.temp,
                     "time" : convertTimeOffsetToDate( resMainCityCall.timezone )
-
                 });
 
 

@@ -25,7 +25,6 @@
 #week_month_tables
 {
     background-image: linear-gradient(to right bottom, #2759eb, #71adf2);
-    height: 100%;
     padding-top: 1%;
     border-top-right-radius: 5%;
     border-bottom-left-radius: 5%;
@@ -61,7 +60,10 @@
 
 .week_weather_image
 {
-    height: 70px;
+    height: 95px;
 }
 
-
+#month_box_weather_image
+{
+    float: left;
+}

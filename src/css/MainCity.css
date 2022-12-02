@@ -1,19 +1,14 @@
 #main_city
 {
-    display: inline-block; /* The two main blocks of the page: main city data and alternate cities + search & localization components. */
     width: 60%;
-    height: 100%;
-    background-color: aqua;
+    /* background-color: aqua; */
 }
 
 #alt_cities_search_localization
 {
-    display: inline-block;
     width: 40%;
-    height: 100%;
-    background-color: red;
+    /* background-color: red; */
     vertical-align: top; /* To make the "alternate city" divs always stay up. */
-    
 }
 
 #alt_cities
@@ -23,7 +18,7 @@
 
 #search_localization
 {
-    margin-top: 14%;
+    margin-top: 16%;
 }
 
 #search
@@ -34,56 +29,27 @@
 #main_city_box
 {
     margin-top: 0%;
-    margin-bottom: 40%;
+    margin-bottom: 7%;
     margin-left: 0%;
-    background-color: yellow;
+    /* background-color: yellow; */
 }
 
 #main_city_data
 {
     text-align: left;
     margin-left: 15%;
-    padding-bottom: 1%;
+    margin-top: 5%;
+    padding-bottom: 30%;
     width: 75%;
-    background-color: green;
-
+    height: 100%;
+    /* background-color: green; */
+    background-image: url("../images/mole_antonelliana.jpg");
+    background-position: top;
+    background-size: 100% 100%;
+    border-radius: 5%;
 }
 
-#today_and_forecast
+.main_city_details
 {
-    width: 100%;
-    background-color: violet;
+    color: white;
 }
-
-#today_box
-{
-    display: inline-block;
-    vertical-align: top;
-    margin-left: 0%;
-    margin-right: 7%;
-    background-color: brown;
-    width: 25%;    
-}
-
-#week_month_box
-{
-    display: inline-block; 
-    /* position: absolute;*/
-    margin-top: 0%;
-    /* margin-block-start: 1em;
-    margin-block-end: 1em;
-    margin-inline-start: 0px;
-    margin-inline-end: 0px; */
-
-}
-
-#week_box
-{
-    display: inline-block;
-}
-
-#month_box
-{
-    display: inline-block;
-}
-
