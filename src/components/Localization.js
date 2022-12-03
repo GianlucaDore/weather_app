@@ -11,7 +11,7 @@ export const Localization = () =>
                 <img id='localization_image' src={geotag} alt="geotag-symbol"></img>
                 <h3>Add localization</h3>
             </button>
-        </div>
+        </div> 
         
     )
 }

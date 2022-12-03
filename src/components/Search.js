@@ -9,7 +9,7 @@ export const Search = () =>
             <h2>Search</h2>
             <form id='search-form'>
                 <input id='search-input' name="city-search" placeholder='Enter a city name...'></input>
-                <button id='search_submit' type="submit" disabled>
+                <button id='search-submit' type="submit" disabled>
                     <img src={search} alt="Search icon"/>
                 </button>
             </form>

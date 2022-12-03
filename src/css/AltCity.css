@@ -5,14 +5,63 @@
 
 }
 
-.alternate_city_table
+.alternate_city_table_
 { 
     background: rgb(16,11,93);
     background: linear-gradient(90deg, rgba(16,11,93,1) 0%, rgba(30,30,228,1) 65%, rgba(0,212,255,1) 100%);
     border-radius: 10%;
     width: 60%;
-    
 }
+
+
+.alternate_city_table_Clear
+{ 
+    background: rgb(16,11,93);
+    background: linear-gradient(90deg, rgba(16,11,93,1) 0%, rgba(30,30,228,1) 65%, rgba(0,212,255,1) 100%);
+    border-radius: 10%;
+    width: 60%;
+}
+
+.alternate_city_table_Clouds
+{ 
+    background: rgb(73,64,64);
+    background: linear-gradient(90deg, rgba(73,64,64,1) 0%, rgba(147,155,179,1) 30%);
+    border-radius: 10%;
+    width: 60%;
+}
+
+.alternate_city_table_Drizzle
+{ 
+    background: rgb(31,175,240);
+    background: linear-gradient(90deg, rgba(31,175,240,1) 0%, rgba(96,99,107,1) 53%);
+    border-radius: 10%;
+    width: 60%;
+}
+
+.alternate_city_table_Rain
+{ 
+    background: rgb(16,11,93);
+    background: linear-gradient(90deg, rgba(16,11,93,1) 0%, rgba(30,30,228,1) 65%, rgba(0,212,255,1) 100%);
+    border-radius: 10%;
+    width: 60%;
+}
+
+.alternate_city_table_Snow
+{ 
+    background: rgb(139,218,226);
+    background: linear-gradient(to left, rgba(139,218,226,1) 0%, rgba(75,78,85,1) 46%);
+    border-radius: 10%;
+    width: 60%;
+}
+
+.alternate_city_table_Thunderstorm
+{ 
+    background: rgb(42,39,39);
+    background: linear-gradient(90deg, rgba(42,39,39,1) 0%, rgba(44,46,51,1) 29%);  
+    border-radius: 10%;
+    width: 60%;
+}
+
 /*
 .alternate_city_tablerow
 {
@@ -28,8 +77,7 @@
     margin-left: 15%;
 }
 
-/*
 .alternate_city_weather_icon
 {
-  
-} */
+    height: 85px;
+}

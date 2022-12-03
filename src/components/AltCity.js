@@ -8,7 +8,7 @@ export const AltCity = (props) =>
 {
     return (
         <div className='alternate_city'>
-            <table className='alternate_city_table'>
+            <table className={'alternate_city_table_' + props.data.weather}>
                 <tbody>
                     <tr className='alternate-city-tablerow'>
                         <td className='alternate_city_tabledata'>

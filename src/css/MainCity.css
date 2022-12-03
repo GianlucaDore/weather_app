@@ -18,18 +18,18 @@
 
 #search_localization
 {
-    margin-top: 16%;
+    margin-top: 12%;
 }
 
 #search
 {
-    margin-bottom: 10%;
+    margin-bottom: 12%;
 }
 
 #main_city_box
 {
     margin-top: 0%;
-    margin-bottom: 7%;
+    margin-bottom: 5%;
     margin-left: 0%;
     /* background-color: yellow; */
 }
@@ -51,5 +51,6 @@
 
 .main_city_details
 {
-    color: white;
+    color: black;
+    margin-left: 2.5%;
 }
