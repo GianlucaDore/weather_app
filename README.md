@@ -2,28 +2,17 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 ______________________________________________________________________________________________________________________________________
 
+# About React Weather Widget
 
-## Available Scripts
+This project was made as a submission for Developer Enhancers. The goal was to create a weather app widget that resembled the specifications given.
+The basic feature asked was to create a "This week/This month" infobox to display weather data for the week or for the month. The other parts of the UI are not made for interaction.
 
-In the project directory, you can run:
+This is the Invisio app that needed to be implemented:
 
-### `npm start`
+https://projects.invisionapp.com/share/Z3YUHUAFRT2#/screens/432413431
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+https://projects.invisionapp.com/share/Z3YUHUAFRT2#/screens/432413432
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+And these are some screens of the application developed:
 
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+![meteo_app_week](https://user-images.githubusercontent.com/51960987/236862268-a42f318a-82f6-4c92-bfb1-1090c66c9006.PNG)
