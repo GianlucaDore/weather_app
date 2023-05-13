@@ -5,7 +5,7 @@ import { AddCity } from './AddCity';
 import { AltCity } from './AltCity';
 import { Search } from './Search';
 import { Localization } from './Localization';
-import { isItDaytime, isItTheWorstWeather, isItADifferentDay, convertTimeOffsetToDate, getWeekday } from '../converters';
+import { isItDaytime, isItTheWorstWeather, isItADifferentDay, convertTimeOffsetToDate, getWeekday, getMonth } from '../converters';
 import '../css/Caller.css'
 
 export const MainCityContext = React.createContext(
@@ -55,11 +55,15 @@ export const Caller = () =>
 
                 setForecastedData(() => {
                 
-                    let todayTempMap = new Map();  // This is all we need for Today's box: key are the hours, values are their temp values.
-                    let weekWeatherMap = new Map();
-                    let maxTemp = [0];      // Array that stores the maximum temp registered for each day.
+                    let todayTempMap = new Map();  // This is all we need for Today's box: keys are the hours, values are their temp values.
+                    let weekWeatherMap = new Map(); // A Map is required for the forecasted weather for 'This week' box.
+                    let monthWeatherObj = {};  // An Object is sufficient to contain the infos for 'This month' box.
+                    let maxTempForEachDay = []; // Array that stores the maximum temperature registered for each day.
+                    let minTempForEachDay = []; // Array that stores the minimum temperature registered for each day.
+                    let humidityForEachDay = []; // Humidity values for each day as Array of arrays (first element: sum of humidity values for the day, second element: times humidity got updated).
+                    let pressureForEachDay = []; // Humidity values for each day as Array of arrays (first element: sum of pressure values for the day, second element: times pressure got updated). 
                     let worstWeather = [[null, null, null, null]];  // Array that stores the worst weather condition for each day (during daytime, 8AM-8PM).
-                    let actualDate = "2022-11-15 00:00:00"; 
+                    let actualDate = "2023-01-01 00:00:00";  // Default initial date. 
                     
                     for(let i=0, j=-1; i<resUrlForecastCall.list.length; i++)
                     {
@@ -69,20 +73,40 @@ export const Caller = () =>
                             todayTempMap.set(dt_txt_DateObject.getHours(), Math.round(resUrlForecastCall.list[i].main.temp));  // Here we just register the 3 next forecasted hours, since every entry in .list has a 3 hours difference from its previous element.
                         }
                         
-                        if (isItADifferentDay(resUrlForecastCall.list[i].dt_txt, actualDate ) === true)  // Did we just parsed data for another day?
+                        if (isItADifferentDay(resUrlForecastCall.list[i].dt_txt, actualDate ) === true)  // Did we just parse data for a new day?
                         {
-                            actualDate = resUrlForecastCall.list[i].dt_txt;  // If so, let's register it's another day and let's move out to search for the highest temp and worst weather of it (j++).
+                            actualDate = resUrlForecastCall.list[i].dt_txt;  // If so, let's register it's another day and let's move out to search for the highest temp, the "worst case weather" and the average humidity of it (j++).
                             j++;
+                            humidityForEachDay.push([0,0]);
+                            pressureForEachDay.push([0,0]);
                         }
 
-                        if (maxTemp[j] === undefined)  // maxTemp[j] shouldn't be undefined, or the next if is not going to succeed since it would compare int to undefined.
+
+                        /* Time to work on humidity and pressure counters. */
+                        humidityForEachDay[j][0] += resUrlForecastCall.list[i].main.humidity;  // We add the current humidity value to the total.
+                        humidityForEachDay[j][1]++;  // We register that we just had a measurement.
+                        pressureForEachDay[j][0] += resUrlForecastCall.list[i].main.pressure;  // We add the current pressure value to the total.
+                        pressureForEachDay[j][1]++;  // We register that we just had a measurement.
+
+
+                        /* Time to work on the arrays for minimum and maximum temperature of the day. */
+                        if (maxTempForEachDay[j] === undefined)  // maxTempForEachDay[j] shouldn't be undefined, or the next 'if' statement is not going to succeed since it would compare int to undefined.
                         {
-                            maxTemp[j] = -Infinity;  // Every temp value fetched, even if negative, will always be greater than -infinity. 
+                            maxTempForEachDay[j] = -Infinity;  // Every max temperature value fetched, even if negative, will always be greater than -infinity. 
                         }
-                        if (resUrlForecastCall.list[i].main.temp > maxTemp[j])  // Is this the the highest temperature of the day?  maxTemp[j] should now NOT be undefined.
+                        if (resUrlForecastCall.list[i].main.temp > maxTempForEachDay[j])  // Is this the the new highest temperature of the day?  maxTempForEachDay[j] should now NOT be undefined.
                         {
-                            maxTemp[j] = resUrlForecastCall.list[i].main.temp;  // If yes, time to update the highest temp value of the day.
+                            maxTempForEachDay[j] = resUrlForecastCall.list[i].main.temp;  // If yes, time to update the highest temperature value of the day.
                         }
+                        if (minTempForEachDay[j] === undefined)  // minTempForEachDay[j] shouldn't be undefined, or the next 'if' statement is not going to succeed since it would compare int to undefined.
+                        {
+                            minTempForEachDay[j] = Infinity;  // Every min temperature value fetched, even if positive, will always be greater than +infinity. 
+                        }
+                        if (resUrlForecastCall.list[i].main.temp < minTempForEachDay[j])  // Is this the the new lowest temperature of the day?  minTempForEachDay[j] should now NOT be undefined.
+                        {
+                            minTempForEachDay[j] = resUrlForecastCall.list[i].main.temp;  // If yes, time to update the lowest temperature value of the day.
+                        }
+
 
                         if (isItDaytime(resUrlForecastCall.list[i].dt_txt) === true)  // The weather icon for the day is based on the worst condition during daytime (8AM-8PM).
                         {
@@ -99,16 +123,32 @@ export const Caller = () =>
                         }
                     }
 
-                    /* Now let's prepare the weekWeatherMap: key is the day of the week, value is its weather details: temp value is stored in maxTemp, while weather details are stored in worstWeather. */
-                    const date = new Date(); 
+                    /* Now let's prepare the weekWeatherMap: key is the day of the week, value is its weather details: temp value is stored in maxTempForEachDay, while weather details are stored in worstWeather. */
+                    let date = new Date(); 
                     date.setDate(date.getDate() + 1);   // i=1 and date+1 because we're skipping today's info in the week/month box.
                     for (let i=1; i<4; i++, date.setDate(date.getDate() + 1) )  // i<4 because we need to display only the 3 next days in the Week box.
-                        weekWeatherMap.set(getWeekday(date.getDay()), [Math.round(maxTemp[i]), worstWeather[i][3]]);
+                        weekWeatherMap.set(getWeekday(date.getDay()), [Math.round(maxTempForEachDay[i]), worstWeather[i][3]]);
 
-                    /* We already have todayTempMap ready, we prepared it in the for loop. No additional operations on it are needed, we can return the maps that will make the forecastedData state variable. */
+                    /* Now let's prepare the monthWeatherObj: we have to calculate the average temp, the average weather, the average humidity and dew point of the day showed in the box (which is +3 days from today, the limit for this free API), plus the highest and the lowest temp value of it. */
+                    const avgHumidityMonthly = Math.round(humidityForEachDay[humidityForEachDay.length-1][0] / humidityForEachDay[humidityForEachDay.length-1][1]) + "%";
+                    const avgPressureMonthly = Math.round(pressureForEachDay[pressureForEachDay.length-1][0] / pressureForEachDay[pressureForEachDay.length-1][1]) + " hPa";
+                    date = new Date(actualDate);  // actualDate still contains the date of the last day listed in API response.
+                    monthWeatherObj = {
+                        date : (getWeekday(date.getDay()) + ", " + date.getDate() + " " + getMonth(date.getMonth())),
+                        main_temp : maxTempForEachDay[maxTempForEachDay.length - 1],
+                        weather_title : worstWeather[worstWeather.length - 1][0],
+                        weather_icon : worstWeather[worstWeather.length - 1][3],
+                        max_temp : maxTempForEachDay[maxTempForEachDay.length - 1],
+                        min_temp : minTempForEachDay[minTempForEachDay.length - 1],
+                        humidity : avgHumidityMonthly,
+                        pressure : avgPressureMonthly
+                    }
+
+                    /* We already have todayTempMap ready, we prepared it in the 'for' loop. No additional operations on it are needed, we can return the maps that will make the forecastedData state variable. */
                     return ({
                         "today": todayTempMap,
-                        "this_week" : weekWeatherMap
+                        "this_week" : weekWeatherMap,
+                        "this_month" : monthWeatherObj
                     });  // And the forecastedData state variable is now set.
                 });
 
@@ -119,7 +159,7 @@ export const Caller = () =>
                     "weather_description" : resUrlAltCity1Call.weather[0].description,
                     "icon" : resUrlAltCity1Call.weather[0].icon,
                     "temperature" : Math.round(resUrlAltCity1Call.main.temp),
-                    "time" : convertTimeOffsetToDate( resUrlAltCity1Call.timezone )  // time attribute is type Date
+                    "time" : convertTimeOffsetToDate( resUrlAltCity1Call.timezone )  // time attribute is a Date data type.
                 });
 
                 setAltCity2Data({
@@ -128,7 +168,7 @@ export const Caller = () =>
                     "weather_description" : resUrlAltCity2Call.weather[0].description,
                     "icon" : resUrlAltCity2Call.weather[0].icon,
                     "temperature" : Math.round(resUrlAltCity2Call.main.temp),
-                    "time" : convertTimeOffsetToDate( resUrlAltCity2Call.timezone )  // time attribute is type Date
+                    "time" : convertTimeOffsetToDate( resUrlAltCity2Call.timezone )  // time attribute is a Date data type.
                 });
 
                 console.log("Status updated.");

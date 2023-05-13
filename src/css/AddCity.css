@@ -1,7 +1,7 @@
 #add_city
 {
     margin-bottom: 2%;
-    width: 57%;
+    width: 60%;
 }
 
 #plus_icon
@@ -17,3 +17,14 @@
     margin-left: 2%;
     color: darkblue;
 }
+
+
+@media screen and (max-width: 700px)
+{
+    #add_city
+    {
+        margin-right: auto;
+        margin-bottom: 2%;
+        width: 100%;
+    }
+} 

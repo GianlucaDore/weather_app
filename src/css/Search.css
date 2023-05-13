@@ -14,13 +14,27 @@
     width: 40%;
 }
 
-#search-input
-{
-    flex-grow: 4;
-}
-
 #search-submit
 {
     background-image: linear-gradient(to bottom, #2759eb, #2571f1, #3886f4, #539af4, #71adf2);
     border-radius: 20%;
+}
+
+@media screen and (max-width: 720px)
+{
+    #search-form
+    {
+        display: inline-flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        align-items: stretch;
+        gap: 0%;
+        box-sizing: border-box;   
+        width: 40%;
+    }
+
+    #search-input
+    {
+        max-width: 180%;
+    }
 }

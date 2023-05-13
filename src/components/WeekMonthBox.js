@@ -4,7 +4,7 @@ import { useContext } from "react";
 
 export const WeekMonthBox = (props) =>
 {
-    const [, data] = useContext(MainCityContext);
+    const [, data] = useContext(MainCityContext);  // We ignore the first parameter returned
     let boxToRender = null;
 
     switch (props.mode)
@@ -23,7 +23,7 @@ export const WeekMonthBox = (props) =>
                                             <td className="table_data"><h2 className="week_table_temp_value">{value[0]}°C</h2></td>
                                         </tr>
                                         <tr className="week_table_row">
-                                            <td className="table_data"><img className="week_weather_image" src={"http://openweathermap.org/img/wn/" + value[1] + ".png"} alt="Current Weather Icon" /></td>
+                                            <td className="table_data"><img className="week_weather_image" src={"http://openweathermap.org/img/wn/" + value[1] + ".png"} alt="Week Weather Icon" /></td>
                                         </tr>
                                     </tbody>
                                  </table>);
@@ -36,32 +36,26 @@ export const WeekMonthBox = (props) =>
 
         case "Month":
         {
-            boxToRender = [
+            return (
                 <div id="month_box" key={"month"}>
-                    <div id="text_image_month">
-                        {<h6>Date</h6>}
-                        {<img id="month_box_weather_image" src="image.co/currentweather" alt="weather icon"></img>}
+                    <div id="date_icon_temp_month">
+                        <img id="month_box_weather_image" src={"http://openweathermap.org/img/wn/" + data.this_month.weather_icon + ".png"} alt="Month Weather Icon"></img>
+                        <div id="date_temp_month">
+                            <h5>{data.this_month.date}</h5>
+                            <h6>{data.this_month.main_temp}°C</h6>
+                            <p>{data.this_month.weather_title}</p>
+                        </div>
                     </div>
-                    <div id="text_details_month">
-                        <h6>Month temp</h6>
-                        <p>Weather month description</p>
-                        <p>The high will be temp, the low will be temp</p>
-                        <p>Humidity</p>
-                        <p>UV</p>
-                        <p>Dew point</p>
+                    <div id="high_low_humid_pressure_month">
+                        <p>The high will be {data.this_month.max_temp}°C, the low will be {data.this_month.min_temp}°C</p>
+                        <p>Humidity: {data.this_month.humidity}</p>
+                        <p>Pressure: {data.this_month.pressure}</p>
                     </div>
                 </div>
-            ];
-
-            return (
-                boxToRender.map((div) => {return div;})
-            );
+            );   
         }
         
         default :
             return null;
     }
-
-
- 
 }

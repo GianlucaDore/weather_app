@@ -63,7 +63,48 @@
     height: 95px;
 }
 
+#date_icon_temp_month
+{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-around;
+    row-gap: 1%;
+}
+
+#date_temp_month
+{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+}
+
+#date_temp_month > h6
+{
+    margin-block-start: 0em;
+    margin-block-end: 0em;
+}
+
+#date_temp_month > h5
+{
+    margin-block-end: 0.5em;
+}
+
+#date_temp_month > p
+{
+    margin-block-start: 0.8em;
+}
+
 #month_box_weather_image
 {
-    float: left;
+    width: 40%;
+    height: 30%;
+    align-self: center;
+}
+
+#high_low_humid_pressure_month > p
+{
+    margin: 5.8%;
+    color: white;
 }

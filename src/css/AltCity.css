@@ -67,12 +67,17 @@
 {
 } */
 
-.alternate_city_tabledata
+.alternate_city_tabledata_city_data
 {
     color: white; 
 }
 
-#alt_city_data_cell
+.alternate_city_tabledata_img_temp_data
+{
+    color: white;
+}
+
+.alt_city_data_cell
 {
     margin-left: 15%;
 }
@@ -80,4 +85,13 @@
 .alternate_city_weather_icon
 {
     height: 85px;
+}
+
+@media screen and (max-width: 1050px )
+{
+    .alternate_city_tabledata_img_temp_data
+    {
+        color: white;
+        display: block;
+    }
 }
