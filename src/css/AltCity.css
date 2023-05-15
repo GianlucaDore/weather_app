@@ -5,6 +5,12 @@
 
 }
 
+.t-scroller 
+{
+    display:inline-block;
+    clear:both;
+}
+
 .alternate_city_table_
 { 
     background: rgb(16,11,93);
@@ -89,6 +95,13 @@
 
 @media screen and (max-width: 1050px )
 {
+    td 
+    {
+        min-width: 85px; /* Make the tables same width when responsive style is on */
+        padding-left: 0px;
+        padding-right: 0px;
+    }
+
     .alternate_city_tabledata_img_temp_data
     {
         color: white;

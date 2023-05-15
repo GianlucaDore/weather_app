@@ -9,6 +9,7 @@
     width: 40%;
     /* background-color: red; */
     vertical-align: top; /* To make the "alternate city" divs always stay up. */
+    margin-left: 2%;
 }
 
 #alt_cities
@@ -34,7 +35,7 @@
     /* background-color: yellow; */
 }
 
-#main_city_data
+#torino_clear_sky
 {
     text-align: left;
     margin-left: 15%;
@@ -49,8 +50,84 @@
     border-radius: 5%;
 }
 
+#torino_few_clouds, #torino_scattered_clouds, #torino_broken_clouds
+{
+    text-align: left;
+    margin-left: 15%;
+    margin-top: 5%;
+    padding-bottom: 30%;
+    width: 75%;
+    height: 100%;
+    /* background-color: green; */
+    background-image: url("../images/torino_clouds.png");
+    background-position: top;
+    background-size: 100% 100%;
+    border-radius: 5%;
+}
+
+#torino_shower_rain, #torino_rain
+{
+    text-align: left;
+    margin-left: 15%;
+    margin-top: 5%;
+    padding-bottom: 30%;
+    width: 75%;
+    height: 100%;
+    /* background-color: green; */
+    background-image: url("../images/torino_rain.png");
+    background-position: top;
+    background-size: 100% 100%;
+    border-radius: 5%;
+}
+
+#torino_thunderstorm
+{
+    text-align: left;
+    color: antiquewhite;
+    margin-left: 15%;
+    margin-top: 5%;
+    padding-bottom: 30%;
+    width: 75%;
+    height: 100%;
+    /* background-color: green; */
+    background-image: url("../images/torino_thunderstorm.png");
+    background-position: top;
+    background-size: 100% 100%;
+    border-radius: 5%;
+}
+
+#torino_snow
+{
+    text-align: left;
+    margin-left: 15%;
+    margin-top: 5%;
+    padding-bottom: 30%;
+    width: 75%;
+    height: 100%;
+    /* background-color: green; */
+    background-image: url("../images/torino_snow.png");
+    background-position: top;
+    background-size: 100% 100%;
+    border-radius: 5%;
+}
+
+#torino_mist
+{
+    text-align: left;
+    margin-left: 15%;
+    margin-top: 5%;
+    padding-bottom: 30%;
+    width: 75%;
+    height: 100%;
+    /* background-color: green; */
+    background-image: url("../images/torino_mist.png");
+    background-position: top;
+    background-size: 100% 100%;
+    border-radius: 5%;
+}
+
 .main_city_details
 {
-    color: black;
     margin-left: 2.5%;
 }
+

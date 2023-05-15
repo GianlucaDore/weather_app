@@ -3,6 +3,7 @@
     width: 100%;
     display: flex;
     flex-wrap: wrap;
+    row-gap: 16px;
     justify-content: center;
     align-items: stretch;
     /* background-color: violet; */
