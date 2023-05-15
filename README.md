@@ -27,4 +27,10 @@ And these are some screens of the application developed;
 
 iPhone XR:
 
-![weather_iphone](https://github.com/GianlucaDore/weather_app/assets/51960987/48ebd2d1-14bd-474f-a153-6d367e7c6d02)
+![iphone_responsive](https://github.com/GianlucaDore/weather_app/assets/51960987/3077e383-a689-4acc-88bc-e2c93b297a31)
+
+
+
+NEW IN V1.0 : Different landscapes as background images for Turin's city matching the current weather reported!
+
+
